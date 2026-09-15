@@ -1,0 +1,63 @@
+---
+title: "Home runs"
+---
+
+```{r}
+#| cache: true
+#| message: false
+library(tidyverse)
+library(Lahman)
+
+hr_by_season <- Teams |>
+  select(yearID, teamID, G, HR) |>
+  group_by(yearID) |>
+  summarise(
+    total_home_runs = sum(HR, na.rm = TRUE),
+    total_team_games = sum(G, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(yearID) |>
+  mutate(home_runs_per_game = total_home_runs / total_team_games)
+```
+
+```{r}
+#| message: false
+shortened_seasons <- c(1918, 1919, 1981, 1994, 1995, 2020)
+
+hr_by_season |>
+  mutate(shortened = yearID %in% shortened_seasons) |>
+  ggplot(aes(x = yearID, y = home_runs_per_game)) +
+  geom_line(color = "#cc4c02", linewidth = 0.8) +
+  geom_point(aes(color = shortened), size = 1.5) +
+  scale_color_manual(
+    values = c("FALSE" = "#cc4c02", "TRUE" = "#2b8cbe"),
+    labels = c("FALSE" = "Regular season", "TRUE" = "Shortened season"),
+    name = "Season type"
+  ) +
+  labs(
+    title = "Home Runs per Team Game by Season",
+    x = "Season",
+    y = "Home Runs per Team Game",
+    caption = "Source: Lahman Baseball Database"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+comparison <- hr_by_season |>
+  filter(yearID %in% c(2019, 1981, 1994, 2020)) |>
+  select(yearID, total_home_runs, total_team_games, home_runs_per_game) |>
+  arrange(factor(yearID, levels = c(2019, 1981, 1994, 2020))) |>
+  rename(
+    season = yearID,
+    total_home_runs = total_home_runs,
+    total_team_games = total_team_games,
+    home_runs_per_game = home_runs_per_game
+  )
+
+knitr::kable(comparison, digits = 2)
+```
+
+# Home runs
+
+This page explores home run trends in Major League Baseball using Lahman data.

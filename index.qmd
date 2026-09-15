@@ -4,4 +4,6 @@ title: "Baseball"
 
 # Baseball
 
-Welcome to the Baseball website.
+Welcome to our Baseball project, where we explore the history of Major League Baseball through its data and the Lahman Database.
+
+This site follows the story of the game from its earliest seasons to the present, using baseball records and statistics to uncover patterns across time.
