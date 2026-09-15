@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Baseball",
+    "section": "",
+    "text": "Baseball\nWelcome to Baseball, a short exploration of Major League Baseball history through the Lahman Database. Our analysis follows the game’s long run of team and player records and highlights how the home-runs-per-game story changed across seasons.\nThe site also zooms in on the best career home-run leaders, showing which players set the strongest long-term marks in the sport. You can visit the Home Runs and Sluggers analysis pages from the navbar to see the full story."
+  },
+  {
+    "objectID": "sluggers.html",
+    "href": "sluggers.html",
+    "title": "Sluggers",
+    "section": "",
+    "text": "Sluggers\nThis page explores sluggers in Major League Baseball using Lahman batting data."
+  },
+  {
+    "objectID": "home-runs.html",
+    "href": "home-runs.html",
+    "title": "Home runs",
+    "section": "",
+    "text": "season\ntotal_home_runs\ntotal_team_games\nhome_runs_per_game\n\n\n\n\n2019\n6776\n4858\n1.39\n\n\n1981\n1781\n2788\n0.64\n\n\n1994\n3306\n3200\n1.03\n\n\n2020\n2304\n1796\n1.28\n\n\n\n\n\n\nHome runs\nThis page explores home run trends in Major League Baseball using Lahman data."
+  }
+]
