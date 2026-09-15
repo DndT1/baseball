@@ -4,6 +4,6 @@ title: "Baseball"
 
 # Baseball
 
-Welcome to our Baseball project, where we explore the history of Major League Baseball through its data and the Lahman Database.
+Welcome to Baseball, a short exploration of Major League Baseball history through the Lahman Database. Our analysis follows the game’s long run of team and player records and highlights how the home-runs-per-game story changed across seasons.
 
-This site follows the story of the game from its earliest seasons to the present, using baseball records and statistics to uncover patterns across time.
+The site also zooms in on the best career home-run leaders, showing which players set the strongest long-term marks in the sport. You can visit the Home Runs and Sluggers analysis pages from the navbar to see the full story.

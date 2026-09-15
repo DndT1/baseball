@@ -22,6 +22,9 @@ hr_by_season <- Teams |>
 
 ```{r}
 #| message: false
+library(tidyverse)
+library(Lahman)
+
 shortened_seasons <- c(1918, 1919, 1981, 1994, 1995, 2020)
 
 hr_by_season |>
@@ -44,6 +47,10 @@ hr_by_season |>
 ```
 
 ```{r}
+#| message: false
+library(tidyverse)
+library(Lahman)
+
 comparison <- hr_by_season |>
   filter(yearID %in% c(2019, 1981, 1994, 2020)) |>
   select(yearID, total_home_runs, total_team_games, home_runs_per_game) |>
