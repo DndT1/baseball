@@ -1,0 +1,69 @@
+---
+title: "Sluggers"
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+library(Lahman)
+
+career_hr_leaders <- Batting |>
+  group_by(playerID) |>
+  summarise(
+    career_home_runs = sum(HR, na.rm = TRUE),
+    first_year = min(yearID),
+    last_year = max(yearID),
+    .groups = "drop"
+  ) |>
+  arrange(desc(career_home_runs)) |>
+  slice_head(n = 15) |>
+  left_join(People, by = "playerID") |>
+  mutate(name = paste(nameFirst, nameLast)) |>
+  select(name, career_home_runs, first_year, last_year) |>
+  arrange(desc(career_home_runs)) |>
+  mutate(steroid_era = first_year <= 2009 & last_year >= 1994)
+
+career_hr_leaders |>
+  ggplot(aes(x = career_home_runs, y = reorder(name, career_home_runs), fill = steroid_era)) +
+  geom_col(width = 0.8) +
+  scale_y_discrete(limits = rev(career_hr_leaders$name)) +
+  scale_fill_manual(
+    values = c("FALSE" = "#CC4C02", "TRUE" = "#2B8CBE"),
+    labels = c("FALSE" = "No era overlap", "TRUE" = "Overlap with steroid era"),
+    name = "Era overlap"
+  ) +
+  labs(
+    title = "Top 15 Career Home Run Leaders by Era Overlap",
+    x = "Career Home Runs",
+    y = "Player",
+    caption = "Source: Lahman Baseball Database"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+#| message: false
+library(tidyverse)
+library(Lahman)
+
+barry_bonds <- Batting |>
+  filter(playerID == "bondsba01") |>
+  group_by(yearID) |>
+  summarise(home_runs = sum(HR, na.rm = TRUE), .groups = "drop") |>
+  arrange(yearID)
+
+barry_bonds |>
+  ggplot(aes(x = yearID, y = home_runs)) +
+  geom_col(fill = "#2B8CBE") +
+  labs(
+    title = "Barry Bonds Home Runs by Season",
+    x = "Season",
+    y = "Home Runs",
+    caption = "Source: Lahman Baseball Database"
+  ) +
+  theme_minimal()
+```
+
+# Sluggers
+
+This page explores sluggers in Major League Baseball using Lahman batting data.
